@@ -1,0 +1,59 @@
+@import './../styles/abstracts/_mixins.scss';
+
+.card-container {
+  position: absolute;
+  top: 10rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40rem;
+  height: 45rem;
+
+  mat-card {
+    width: 100%;
+    animation: .5s popIn;
+
+
+    mat-card-header {
+      width: fit-content;
+      margin: 0 auto;
+    }
+
+    mat-card-content {
+      .form-container {
+        padding-top: 5rem;
+        display: grid;
+        grid-template-rows: 1fr 1fr 1.5fr;
+        gap: 1rem;
+
+        &__actions {
+          padding-top: 1.5rem;
+          display: grid;
+          grid-template-rows: repeat(2, 1fr);
+          align-items: center;
+
+          &__new-user {
+            text-align: center;
+          }
+        }
+
+      }
+
+    }
+  }
+
+}
+
+
+@keyframes popIn {
+  0% {
+    transform: scale(.80);
+  }
+
+  50% {
+    transform: scale(1.15);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

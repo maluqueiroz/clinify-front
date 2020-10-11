@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+@import "app/styles/abstracts/mixins";
+@import "app/styles/abstracts/variables";
+
+@import "app/styles/base/base";
+@import "app/styles/base/typography";
+@import "app/styles/base/utilities";
+
+@import "app/styles/components/form";
+@import "app/styles/components/buttons";
+@import './app/styles/vendors-extensions/angular-material.scss';
