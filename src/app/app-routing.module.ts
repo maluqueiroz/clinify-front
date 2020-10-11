@@ -1,3 +1,4 @@
+import { UsersComponent } from './main/users/users.component';
 import { NewUserComponent } from './login/new-user/new-user.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -11,7 +12,10 @@ const routes: Routes = [
   { path: 'new-user', component: NewUserComponent},
   {
     path: 'main',
-    component: MainComponent
+    component: MainComponent,
+    children: [
+      { path: 'users', component: UsersComponent }
+    ]
    },
    {path: '**', component: NotFoundComponent }
 ];

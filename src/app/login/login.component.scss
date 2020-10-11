@@ -1,4 +1,7 @@
 @import './../styles/abstracts/_mixins.scss';
+@import './../styles/abstracts/_variables.scss';
+@import './../styles/base/_animations.scss';
+
 
 .card-container {
   position: absolute;
@@ -10,8 +13,7 @@
 
   mat-card {
     width: 100%;
-    animation: .5s popIn;
-
+    animation: $animation-popIn-time popIn;
 
     mat-card-header {
       width: fit-content;
@@ -44,16 +46,4 @@
 }
 
 
-@keyframes popIn {
-  0% {
-    transform: scale(.80);
-  }
 
-  50% {
-    transform: scale(1.15);
-  }
-
-  100% {
-    transform: scale(1);
-  }
-}
