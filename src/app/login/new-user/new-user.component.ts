@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {equal} from 'assert';
 
 interface SignUpControls {
   username: AbstractControl;
