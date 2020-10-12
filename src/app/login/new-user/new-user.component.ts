@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {equal} from 'assert';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/shared/services/user.service';
 
 interface SignUpControls {
   username: AbstractControl;
@@ -8,6 +10,7 @@ interface SignUpControls {
   password: AbstractControl;
   password2: AbstractControl;
 }
+
 @Component({
   selector: 'app-new-user',
   templateUrl: './new-user.component.html',
@@ -17,7 +20,14 @@ export class NewUserComponent implements OnInit {
   signUpForm: FormGroup;
   controls: SignUpControls;
 
-  constructor(private fb: FormBuilder) {
+  errorMessage: string;
+
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
+    private snackBar: MatSnackBar,
+    private router: Router
+    ) {
   }
 
   ngOnInit(): void {
@@ -37,7 +47,20 @@ export class NewUserComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.signUpForm.value);
+    this.userService.registerUser(this.signUpForm.value).subscribe((data) => {
+      console.log(data);
+      this.openSnackBar('Usuário cadastrado com Sucesso!');
+      this.router.navigate(['/login']);
+    },
+    (error) => {
+      this.errorMessage = error.message;
+      this.openSnackBar('Deu Ruim!');
+    });
   }
 
+  openSnackBar(message: string, action?: string): void {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
 }

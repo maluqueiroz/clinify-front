@@ -10,6 +10,10 @@ html, body {
   height: 100%;
 }
 
+body {
+  background-image: url('./../../../assets/asanoha-400px.png');
+}
+
 html {
   font-size: 62.5%;
   @include respond(tab-land) {

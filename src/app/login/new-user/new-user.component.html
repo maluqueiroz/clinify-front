@@ -32,7 +32,7 @@
             autocomplete="off"
             formControlName="email"
             matInput
-            type="text"
+            type="email"
             maxlength="40"
             placeholder="Email"
             required
@@ -81,5 +81,9 @@
 
       </form>
     </mat-card-content>
+
+    <mat-mat-card-footer>
+      <mat-error *ngIf="errorMessage">{{ errorMessage }}</mat-error>
+    </mat-mat-card-footer>
   </mat-card>
 </div>
