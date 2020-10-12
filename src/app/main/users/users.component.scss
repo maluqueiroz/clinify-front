@@ -1,0 +1,26 @@
+@import './../../styles/base/_animations.scss';
+@import './../../styles/abstracts/_variables.scss';
+
+mat-card {
+  animation: $animation-popIn-time popIn;
+
+  table {
+    width: 100%;
+
+    .mat-column-username {
+      width: 35%;
+    }
+
+    .mat-column-email {
+      width: 35%;
+    }
+
+    .mat-column-active {
+      width: 10%;
+    }
+
+    .mat-column-created_on {
+      width: 20%;
+    }
+  }
+}

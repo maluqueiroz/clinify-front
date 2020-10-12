@@ -45,10 +45,11 @@
             type="submit"
             color="primary"
             [disabled]="controls.username.invalid || controls.password.invalid"
+            [routerLink]="['/main']"
           >
             Login
           </button>
-          <a mat-button class="form-container__actions__new-user" [routerLink]="['/new-user']"
+          <a mat-button class="form-container__actions__new-user" [routerLink]="['/main']"
             >Novo Usuário</a
           >
         </div>

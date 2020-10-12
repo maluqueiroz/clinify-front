@@ -3,10 +3,12 @@ import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from '../app-routing.module';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
   declarations: [
-    MainComponent
+    MainComponent,
+    UsersComponent
   ],
   imports: [
     CommonModule,
