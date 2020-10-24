@@ -1,7 +1,9 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { UserService } from 'src/app/shared/services/user.service';
 
 interface SignUpControls {
@@ -16,7 +18,9 @@ interface SignUpControls {
   templateUrl: './new-user.component.html',
   styleUrls: ['./new-user.component.scss']
 })
-export class NewUserComponent implements OnInit {
+export class NewUserComponent implements OnInit, OnDestroy {
+  componentDestroyedSubject = new Subject();
+
   signUpForm: FormGroup;
   controls: SignUpControls;
 
@@ -46,9 +50,15 @@ export class NewUserComponent implements OnInit {
     };
   }
 
+  ngOnDestroy(): void {
+    this.componentDestroyedSubject.complete();
+  }
+
   onSubmit(): void {
-    this.userService.registerUser(this.signUpForm.value).subscribe((data) => {
-      console.log(data);
+    this.userService.registerUser(this.signUpForm.value).pipe(
+      takeUntil(this.componentDestroyedSubject)
+    )
+    .subscribe((data) => {
       this.openSnackBar('Usuário cadastrado com Sucesso!');
       this.router.navigate(['/login']);
     },
@@ -62,5 +72,21 @@ export class NewUserComponent implements OnInit {
     this.snackBar.open(message, action, {
       duration: 2000,
     });
+  }
+
+  isFormValid(): boolean {
+    return this.controls.username.valid
+    && this.controls.email.valid
+    && this.controls.password.valid
+    && this.controls.password2.valid
+    && this.arePasswordsMatching();
+  }
+
+  arePasswordsMatching(): boolean {
+    return this.controls.password.value === this.controls.password2.value;
+  }
+
+  arePasswordsTouched(): boolean {
+    return this.controls.password.touched && this.controls.password2.touched;
   }
 }
