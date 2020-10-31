@@ -1,8 +1,18 @@
-import { AuthService } from './../core/auth/auth.service';
+import { User } from './../main/model/user.model';
+import { authFailed, loginAttempt, loginFailed, loginSuccessful } from '../core/auth/actions/auth.actions';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { Store } from '@ngrx/store';
+import { AppState } from '../reducers';
+import { SnackbarService } from '../core/services/snackbar.service';
+import { AuthService } from '../core/auth/services/auth.service';
+import { MessageLevel } from '../core/services/message-level.enum';
+
+export interface UserLogin {
+  username: string;
+  password: string;
+}
 
 interface LoginControls {
   username: AbstractControl;
@@ -24,7 +34,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private auth: AuthService,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackbarService: SnackbarService,
+    private store: Store<AppState>
   ) {}
 
   ngOnInit(): void {
@@ -40,24 +51,29 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.auth.lameAuthenticator(this.loginForm.value).subscribe(
-      (isAuthenticated: boolean) => {
-        if (isAuthenticated) {
+    const user: UserLogin = this.loginForm.value;
+
+    this.store.dispatch(loginAttempt(user));
+
+    this.auth.lameAuthenticator(user).subscribe(
+      (authenticatedUser: User) => {
+        if (authenticatedUser) {
+
+          this.store.dispatch(loginSuccessful());
+
           this.router.navigate(['/main/users']);
+          // TODO mover mensagens para effects
+          this.snackbarService.open('Sucesso!', MessageLevel.SUCCESS);
         } else {
-          this.openSnackBar('Deu Ruim!');
+          this.store.dispatch(authFailed());
+          this.snackbarService.open('Deu Ruim!', MessageLevel.DANGER);
         }
       },
       (error) => {
+        this.store.dispatch(loginFailed());
         this.errorMessage = error.message;
-        this.openSnackBar('Deu Ruim!');
+        this.snackbarService.open('Deu Ruim!', MessageLevel.DANGER);
       }
     );
-  }
-
-  openSnackBar(message: string, action?: string): void {
-    this.snackBar.open(message, action, {
-      duration: 2000,
-    });
   }
 }

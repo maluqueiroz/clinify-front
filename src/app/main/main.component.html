@@ -1,9 +1,6 @@
 <mat-sidenav-container>
     <mat-sidenav mode="over" align="start" role="navigation" #sidenav>
-        <a class="nav-link" mat-button [routerLink]="['/main/patients']">
-          <mat-icon>list</mat-icon>
-          Listagem
-        </a>
+        <app-side-nav-items></app-side-nav-items>
     </mat-sidenav>
     <mat-sidenav-content>
       <mat-toolbar color="primary">

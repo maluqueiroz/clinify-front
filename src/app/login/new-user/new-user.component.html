@@ -3,7 +3,7 @@
     <mat-card-header align="center">
       <mat-card-title>Cadastro</mat-card-title>
       <mat-card-subtitle
-      >Cadastre-se para ter acesso ao sistema</mat-card-subtitle
+        >Cadastre-se para ter acesso ao sistema</mat-card-subtitle
       >
     </mat-card-header>
     <mat-card-content>
@@ -40,50 +40,48 @@
           <mat-error>Forneça um email válido</mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Senha</mat-label>
-          <input
-            autocomplete="off"
-            formControlName="password"
-            matInput
-            type="password"
-            placeholder="Senha"
-            maxlength="20"
-            required
-          />
-          <mat-error>Forneça uma senha válida</mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Repita a senha</mat-label>
-          <input
-            autocomplete="off"
-            formControlName="password2"
-            matInput
-            type="password"
-            placeholder="Repita a senha"
-            maxlength="20"
-            required
-          />
-          <mat-error>Forneça uma senha válida</mat-error>
-        </mat-form-field>
-
+          <mat-form-field appearance="outline">
+            <mat-label>Senha</mat-label>
+            <input
+              autocomplete="off"
+              formControlName="password"
+              matInput
+              type="password"
+              placeholder="Senha"
+              maxlength="20"
+              required
+            />
+            <mat-error>Forneça uma senha válida</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Repita a senha</mat-label>
+            <input
+              autocomplete="off"
+              formControlName="password2"
+              matInput
+              type="password"
+              placeholder="Repita a senha"
+              maxlength="20"
+              required
+            />
+            <mat-error>Forneça uma senha válida</mat-error>
+          </mat-form-field>
         <div class="form-container__actions">
           <button
             mat-raised-button
             type="submit"
             color="primary"
-            [disabled]="controls.username.invalid || controls.email.invalid || controls.password.invalid || controls.password2.invalid"
+            [disabled]="!isFormValid()"
           >
             Cadastrar
           </button>
+          <mat-error *ngIf="arePasswordsTouched() && !arePasswordsMatching()" align="center">Senhas não são iguais</mat-error>
         </div>
-
       </form>
     </mat-card-content>
 
-    <mat-mat-card-footer>
+    <mat-card-footer>
       <mat-error *ngIf="errorMessage">{{ errorMessage }}</mat-error>
-    </mat-mat-card-footer>
+    </mat-card-footer>
   </mat-card>
 </div>

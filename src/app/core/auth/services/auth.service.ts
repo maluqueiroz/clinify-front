@@ -1,14 +1,12 @@
-import { User } from './../../main/model/user.model';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { UserService } from 'src/app/shared/services/user.service';
+import { UserService } from 'src/app/shared/services/user/user.service';
 
 interface LoginData {
   username: string;
   password: string;
 }
-
 
 @Injectable({
   providedIn: 'root'

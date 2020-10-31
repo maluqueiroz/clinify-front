@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../model/user.model';
 import { tap } from 'rxjs/operators';
-import { UserService } from 'src/app/shared/services/user.service';
+import { UserService } from 'src/app/shared/services/user/user.service';
 
 @Component({
   selector: 'app-users',
@@ -12,14 +12,14 @@ import { UserService } from 'src/app/shared/services/user.service';
 export class UsersComponent implements OnInit {
   users$: Observable<User[]>;
 
-  columnsToDisplay: string[] = ['username', 'email', 'active', 'created_on'];
+  columnsToDisplay: string[] = ['username', 'email', 'active', 'createdOn'];
 
   constructor(
     private userService: UserService
   ) { }
 
   ngOnInit(): void {
-    this.users$ = this.userService.getAllUsers().pipe(tap(console.log));
+    this.users$ = this.userService.getAllUsers();
   }
 
 }

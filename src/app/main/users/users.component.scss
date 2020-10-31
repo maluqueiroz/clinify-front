@@ -2,7 +2,6 @@
 @import './../../styles/abstracts/_variables.scss';
 
 mat-card {
-  animation: $animation-popIn-time popIn;
 
   table {
     width: 100%;
@@ -19,7 +18,7 @@ mat-card {
       width: 10%;
     }
 
-    .mat-column-created_on {
+    .mat-column-createdOn {
       width: 20%;
     }
   }

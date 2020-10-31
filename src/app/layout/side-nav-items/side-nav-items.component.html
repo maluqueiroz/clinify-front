@@ -1,0 +1,18 @@
+  <div class="nav-items">
+    <a class="nav-link" mat-button [routerLink]="['/main/users']">
+      <mat-icon class="nav-icon">assignment</mat-icon>
+      Atendimentos
+    </a>
+    <a class="nav-link" mat-button [routerLink]="['/main/users']">
+      <mat-icon class="nav-icon">person</mat-icon>
+      Usuários
+    </a>
+    <a class="nav-link" mat-button [routerLink]="['/main/patients']">
+      <mat-icon class="nav-icon">accessibility_new</mat-icon>
+      Pacientes
+    </a>
+    <a class="nav-link" mat-button [routerLink]="['/login']" (click)="onLogout()">
+      Logout
+    </a>
+  </div>
+
