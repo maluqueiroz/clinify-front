@@ -1,11 +1,10 @@
+import { User } from './../main/model/user.model';
 import { authFailed, loginAttempt, loginFailed, loginSuccessful } from '../core/auth/actions/auth.actions';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngrx/store';
 import { AppState } from '../reducers';
-import { TOOLTIP_PANEL_CLASS } from '@angular/material/tooltip';
 import { SnackbarService } from '../core/services/snackbar.service';
 import { AuthService } from '../core/auth/services/auth.service';
 import { MessageLevel } from '../core/services/message-level.enum';
@@ -57,8 +56,8 @@ export class LoginComponent implements OnInit {
     this.store.dispatch(loginAttempt(user));
 
     this.auth.lameAuthenticator(user).subscribe(
-      (isAuthenticated: boolean) => {
-        if (isAuthenticated) {
+      (authenticatedUser: User) => {
+        if (authenticatedUser) {
 
           this.store.dispatch(loginSuccessful());
 
