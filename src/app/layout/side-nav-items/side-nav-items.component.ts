@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { authActions } from 'src/app/core/auth/actions';
-import { logout } from 'src/app/core/auth/actions/auth.actions';
 import { AppState } from 'src/app/reducers';
 import { MessageLevel } from 'src/app/core/services/message-level.enum';
 
@@ -25,6 +24,7 @@ export class SideNavItemsComponent implements OnInit {
 
   onLogout(): void {
     this.snackbar.open('Usuário deslogado', MessageLevel.INFO);
+    this.store.dispatch(authActions.logout());
     this.router.navigate(['login']);
   }
 

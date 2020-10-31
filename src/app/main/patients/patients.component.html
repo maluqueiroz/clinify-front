@@ -1,11 +1,11 @@
-<mat-card>
+<!-- <mat-card>
   <mat-card-header>
       <mat-card-title>Pacientes</mat-card-title>
       <mat-card-subtitle>Listagem dos pacientes cadastrados na plataforma</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-      <ng-container *ngIf="users$ | async as users; else carregando">
-        <table mat-table [dataSource]="users">
+      <ng-container *ngIf="patient$ | async as patients; else carregando">
+        <table mat-table [dataSource]="patients">
 
           <ng-container matColumnDef="username">
             <th mat-header-cell *matHeaderCellDef> Usuário </th>
@@ -44,4 +44,6 @@
         <p>Carregando</p>
       </ng-template>
   </mat-card-content>
-</mat-card>
+</mat-card> -->
+<p>patient</p>
+<app-new-patient></app-new-patient>
