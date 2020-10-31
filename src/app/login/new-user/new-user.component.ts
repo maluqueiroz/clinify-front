@@ -1,3 +1,5 @@
+import { MessageLevel } from './../../core/services/message-level.enum';
+import { SnackbarService } from './../../core/services/snackbar.service';
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -29,7 +31,7 @@ export class NewUserComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private snackBar: MatSnackBar,
+    private snackbar: SnackbarService,
     private router: Router
     ) {
   }
@@ -59,18 +61,12 @@ export class NewUserComponent implements OnInit, OnDestroy {
       takeUntil(this.componentDestroyedSubject)
     )
     .subscribe((data) => {
-      this.openSnackBar('Usuário cadastrado com Sucesso!');
+      this.snackbar.open('Usuário cadastrado com Sucesso!', MessageLevel.SUCCESS);
       this.router.navigate(['/login']);
     },
     (error) => {
       this.errorMessage = error.message;
-      this.openSnackBar('Deu Ruim!');
-    });
-  }
-
-  openSnackBar(message: string, action?: string): void {
-    this.snackBar.open(message, action, {
-      duration: 2000,
+      this.snackbar.open('Deu Ruim!', MessageLevel.DANGER);
     });
   }
 

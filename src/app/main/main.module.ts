@@ -5,12 +5,14 @@ import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from '../app-routing.module';
 import { UsersComponent } from './users/users.component';
 import { SideNavItemsComponent } from '../layout/side-nav-items/side-nav-items.component';
+import { PatientsComponent } from './patients/patients/patients.component';
 
 @NgModule({
   declarations: [
     MainComponent,
     UsersComponent,
-    SideNavItemsComponent
+    SideNavItemsComponent,
+    PatientsComponent
   ],
   imports: [
     CommonModule,

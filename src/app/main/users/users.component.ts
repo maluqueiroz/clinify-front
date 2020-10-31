@@ -12,7 +12,7 @@ import { UserService } from 'src/app/shared/services/user.service';
 export class UsersComponent implements OnInit {
   users$: Observable<User[]>;
 
-  columnsToDisplay: string[] = ['username', 'email', 'active', 'created_on'];
+  columnsToDisplay: string[] = ['username', 'email', 'active', 'createdOn'];
 
   constructor(
     private userService: UserService

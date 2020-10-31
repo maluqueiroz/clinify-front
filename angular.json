@@ -129,6 +129,7 @@
   },
   "defaultProject": "clinify-front",
   "cli": {
-    "analytics": "6bf67624-d920-4115-9706-0f462fee80c7"
+    "analytics": "6bf67624-d920-4115-9706-0f462fee80c7",
+    "defaultCollection": "@ngrx/schematics"
   }
 }

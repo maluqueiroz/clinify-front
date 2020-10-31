@@ -1,9 +1,12 @@
+import { PermissionsEnum } from './permissions.enum';
+
 export interface UserDTO {
     username: string;
     email: string;
     password: string;
     active: boolean;
-    created_on: string;
+    permission: PermissionsEnum;
+    createdOn: string;
 }
 
 export interface User {
@@ -11,5 +14,6 @@ export interface User {
   email: string;
   password: string;
   active: boolean;
-  created_on: Date;
+  permission: PermissionsEnum;
+  createdOn: Date;
 }

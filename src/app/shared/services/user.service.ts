@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User, UserDTO } from 'src/app/main/model/user.model';
+import { PermissionsEnum } from 'src/app/main/model/permissions.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +39,7 @@ export class UserService {
         return usersDTO.map((userDTO: UserDTO): User => {
           return {
             ...userDTO,
-            created_on: new Date(userDTO.created_on)
+            createdOn: new Date(userDTO.createdOn)
           };
         });
       })
@@ -51,8 +52,9 @@ export class UserService {
       username,
       password,
       email,
+      permission: PermissionsEnum.DEFAULT,
       active: true,
-      created_on: (new Date()).toISOString()
+      createdOn: (new Date()).toISOString()
     };
 
     return this.http.post<UserDTO>(

@@ -1,4 +1,11 @@
+import { SnackbarService } from './../../core/services/snackbar.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { authActions } from 'src/app/core/auth/actions';
+import { logout } from 'src/app/core/auth/actions/auth.actions';
+import { AppState } from 'src/app/reducers';
+import { MessageLevel } from 'src/app/core/services/message-level.enum';
 
 @Component({
   selector: 'app-side-nav-items',
@@ -7,9 +14,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideNavItemsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private store: Store<AppState>,
+    private router: Router,
+    private snackbar: SnackbarService
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  onLogout(): void {
+    this.snackbar.open('Usuário deslogado', MessageLevel.INFO);
+    this.router.navigate(['login']);
   }
 
 }
