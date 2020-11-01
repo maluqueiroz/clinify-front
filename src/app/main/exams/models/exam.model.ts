@@ -1,6 +1,7 @@
-import { Patient } from '../../users/model/patient.model';
+import { Patient } from './../../patients/model/patient.model';
 
 export interface Exam {
+  id: number;
   patient: Patient;
   date: Date;
   finished: boolean;

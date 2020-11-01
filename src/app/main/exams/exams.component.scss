@@ -8,15 +8,15 @@ mat-card {
     }
 
     .mat-column-healthPlan {
-      width: 15%;
-    }
-
-    .mat-column-date {
       width: 10%;
     }
 
+    .mat-column-date {
+      width: 20%;
+    }
+
     .mat-column-checkIn {
-      width: 25%;
+      width: 20%;
 
       .checkIn {
         &__data {
@@ -24,17 +24,20 @@ mat-card {
           flex-flow: row nowrap;
           justify-content: flex-start;
           align-items: center;
-
-          &--date {
-            margin-left: 1rem;
-          }
         }
       }
 
     }
 
-    .mat-column-startExamBtn {
+    .mat-column-actionsRow {
       width: 10%;
+
+      .actions-row {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        align-items: center;
+      }
     }
 
 

@@ -14,7 +14,13 @@ export class ExamService {
     private http: HttpClient
   ) { }
 
-  getAllExams(): Observable<Exam[]> {
+  getAll(): Observable<Exam[]> {
     return this.http.get<Exam[]>(ExamService.EXAM_RESOURCE_URL);
   }
+
+  removeById(examId: number): Observable<Exam> {
+    const id = examId.toString();
+
+    return this.http.delete<Exam>(ExamService.EXAM_RESOURCE_URL + `/${id}`);
+    }
 }
