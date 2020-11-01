@@ -1,4 +1,3 @@
-import { User } from './../main/model/user.model';
 import { authFailed, loginAttempt, loginFailed, loginSuccessful } from '../core/auth/actions/auth.actions';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -8,6 +7,7 @@ import { AppState } from '../reducers';
 import { SnackbarService } from '../core/services/snackbar.service';
 import { AuthService } from '../core/auth/services/auth.service';
 import { MessageLevel } from '../core/services/message-level.enum';
+import { User } from '../main/users/model/user.model';
 
 export interface UserLogin {
   username: string;
@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
 
           this.store.dispatch(loginSuccessful());
 
-          this.router.navigate(['/main/users']);
+          this.router.navigate(['/main/exams']);
           // TODO mover mensagens para effects
           this.snackbarService.open('Sucesso!', MessageLevel.SUCCESS);
         } else {
@@ -71,8 +71,7 @@ export class LoginComponent implements OnInit {
       },
       (error) => {
         this.store.dispatch(loginFailed());
-        this.errorMessage = error.message;
-        this.snackbarService.open('Deu Ruim!', MessageLevel.DANGER);
+        this.snackbarService.open(error.message, MessageLevel.DANGER);
       }
     );
   }
