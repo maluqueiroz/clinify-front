@@ -1,6 +1,6 @@
 export interface Patient {
-  nome: string;
+  name: string;
   birthDate: Date;
-  convenio: string;
+  healthPlan: string;
   code: string;
 }

@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { User, UserDTO } from 'src/app/main/model/user.model';
-import { PermissionsEnum } from 'src/app/main/model/permissions.enum';
 import { environment } from 'src/environments/environment';
+import { User, UserDTO } from 'src/app/main/users/model/user.model';
+import { PermissionsEnum } from 'src/app/main/users/model/permissions.enum';
 
 @Injectable({
   providedIn: 'root'

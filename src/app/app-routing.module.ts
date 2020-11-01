@@ -7,6 +7,7 @@ import { LoginComponent } from 'src/app/login/login.component';
 import { MainComponent } from 'src/app/main/main.component';
 import { NotFoundComponent } from 'src/app/not-found/not-found.component';
 import { PatientsComponent } from './main/patients/patients.component';
+import { ExamsComponent } from './main/exams/exams.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -18,7 +19,8 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: 'users', component: UsersComponent },
-      { path: 'patients', component: PatientsComponent }
+      { path: 'patients', component: PatientsComponent },
+      { path: 'exams', component: ExamsComponent }
     ]
    },
    {path: '**', component: NotFoundComponent }

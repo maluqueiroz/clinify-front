@@ -7,6 +7,7 @@ import { UsersComponent } from './users/users.component';
 import { SideNavItemsComponent } from '../layout/side-nav-items/side-nav-items.component';
 import { PatientsComponent } from './patients/patients.component';
 import { NewPatientComponent } from './patients/new-patient/new-patient.component';
+import { ExamsComponent } from './exams/exams.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { NewPatientComponent } from './patients/new-patient/new-patient.componen
     UsersComponent,
     SideNavItemsComponent,
     PatientsComponent,
-    NewPatientComponent
+    NewPatientComponent,
+    ExamsComponent
   ],
   imports: [
     CommonModule,

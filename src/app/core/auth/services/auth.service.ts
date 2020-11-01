@@ -1,3 +1,4 @@
+import { User } from './../../../main/users/model/user.model';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -17,10 +18,16 @@ export class AuthService {
     private userService: UserService
   ) { }
 
-  lameAuthenticator(userData: LoginData): Observable<boolean> {
-    return this.userService.getUserByUsername(userData.username).pipe(
+  lameAuthenticator(userData: LoginData): Observable<User> {
+    const { username } = userData;
+
+    return this.userService.getUserByUsername(username).pipe(
       map((userFound) => {
-        return userFound.password === userData.password;
+        if (userFound.password === userData.password) {
+          return userFound;
+        }
+
+        throw new Error('Senha Inválida');
       })
     );
   }
