@@ -1,9 +1,9 @@
-import { Patient } from './../../../main/patients/shared/model/patient.model';
-import { environment } from './../../../../environments/environment';
+import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Patient } from 'src/app/main/patients/shared/model/patient.model';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +30,7 @@ export class PatientService {
     );
   }
 
-  getAll(): Observable<Patient[]> {
+  getAllPatients(): Observable<Patient[]> {
     return this.http.get<Patient[]>(
       PatientService.RESOURCE_URL
     ).pipe(
@@ -57,11 +57,5 @@ export class PatientService {
       patientDTO,
       { headers: {'Content-Type': 'application/json; charset=utf-8'} }
     );
-  }
-
-  removeById(examId: number): Observable<Patient> {
-    const id = examId.toString();
-
-    return this.http.delete<Patient>(PatientService.RESOURCE_URL + `/${id}`);
   }
 }

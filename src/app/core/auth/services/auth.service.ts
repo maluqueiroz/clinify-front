@@ -1,8 +1,8 @@
-import { User } from './../../../main/users/model/user.model';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { UserService } from 'src/app/shared/services/user/user.service';
+import { User } from 'src/app/main/users/shared/model/user.model';
+import { UserService } from 'src/app/main/users/shared/service/user.service';
 
 interface LoginData {
   username: string;

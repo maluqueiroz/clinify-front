@@ -1,12 +1,11 @@
-import { MessageLevel } from './../../core/services/message-level.enum';
-import { SnackbarService } from './../../core/services/snackbar.service';
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import {AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { UserService } from 'src/app/shared/services/user/user.service';
+import { UserService } from 'src/app/main/users/shared/service/user.service';
+import { MessageLevel } from 'src/app/shared/services/snackbar/message-level.enum';
+import { SnackbarService } from 'src/app/shared/services/snackbar/snackbar.service';
 
 interface SignUpControls {
   username: AbstractControl;

@@ -1,10 +1,10 @@
-import { SnackbarService } from './../../core/services/snackbar.service';
 import { Observable, Subject } from 'rxjs';
-import { ExamService } from './service/exam.service';
 import { Component, OnInit } from '@angular/core';
-import { Exam } from './models/exam.model';
-import { MessageLevel } from 'src/app/core/services/message-level.enum';
 import { take } from 'rxjs/operators';
+import { MessageLevel } from 'src/app/shared/services/snackbar/message-level.enum';
+import { SnackbarService } from 'src/app/shared/services/snackbar/snackbar.service';
+import { Exam } from './shared/model/exam.model';
+import { ExamService } from './shared/service/exam.service';
 
 @Component({
   selector: 'app-exams',
@@ -12,7 +12,7 @@ import { take } from 'rxjs/operators';
   styleUrls: ['./exams.component.scss']
 })
 export class ExamsComponent implements OnInit {
-  examsSubject = new Subject<Exam[]>();
+  readonly examsSubject = new Subject<Exam[]>();
   exams$: Observable<Exam[]>;
 
   columnsToDisplay = ['patient', 'healthPlan', 'date', 'checkIn', 'actionsRow'];
@@ -36,7 +36,7 @@ export class ExamsComponent implements OnInit {
 
   deleteExam(exam: Exam): void {
     this.examService.removeById(exam.id).pipe(take(1)).subscribe(() => {
-        this.snackbar.open('Consulta Deletada!', MessageLevel.INFO);
+        this.snackbar.open('Paciente Deletada!', MessageLevel.INFO);
         this.loadExams();
       }
     );

@@ -1,10 +1,10 @@
-import { SnackbarService } from './../../core/services/snackbar.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { authActions } from 'src/app/core/auth/actions';
 import { AppState } from 'src/app/reducers';
-import { MessageLevel } from 'src/app/core/services/message-level.enum';
+import { MessageLevel } from 'src/app/shared/services/snackbar/message-level.enum';
+import { SnackbarService } from 'src/app/shared/services/snackbar/snackbar.service';
 
 @Component({
   selector: 'app-side-nav-items',

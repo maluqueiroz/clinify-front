@@ -1,4 +1,4 @@
-import { Patient } from './../../patients/model/patient.model';
+import { Patient } from 'src/app/main/patients/shared/model/patient.model';
 
 export interface Exam {
   id: number;
