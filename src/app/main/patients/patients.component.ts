@@ -1,8 +1,9 @@
+import { Patient } from 'src/app/main/patients/shared/model/patient.model';
+import { NewExamComponent } from './new-exam/new-exam.component';
 import { SnackbarService } from './../../shared/services/snackbar/snackbar.service';
 import { PatientService } from './../../shared/services/patient/patient.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { Patient } from './shared/model/patient.model';
 import { take } from 'rxjs/operators';
 import { MessageLevel } from 'src/app/shared/services/snackbar/message-level.enum';
 import { MatDialog } from '@angular/material/dialog';
@@ -40,6 +41,13 @@ export class PatientsComponent implements OnInit {
 
     dialogRef.afterClosed().pipe(take(1)).subscribe(() => {
       this.loadPatients();
+    });
+  }
+
+  openNewExamDialog(patient: Patient): void {
+    const dialogRef = this.dialog.open(NewExamComponent, {
+      width: '600px',
+      data: patient
     });
   }
 

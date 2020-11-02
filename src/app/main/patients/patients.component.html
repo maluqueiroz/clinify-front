@@ -38,6 +38,13 @@
           <td mat-cell *matCellDef="let patient">
             <div class="actions-row">
               <button
+              mat-icon-button
+              color="primary"
+              aria-label="Cria nova consulta"
+            >
+              <mat-icon (click)="openNewExamDialog(patient)">assignment</mat-icon>
+            </button>
+              <button
                 mat-icon-button
                 color="warn"
                 aria-label="Remove a consulta"

@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Cadastro de paciente</h1>
+<h1 mat-dialog-title>Cadastro de Paciente</h1>
 <div mat-mat-dialog-content>
   <form class="form-container" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
     <mat-form-field appearance="outline">
@@ -42,7 +42,7 @@
         required
       />
     </mat-form-field>
-    <div mat-dialog-actions class="form-container__actions">
+    <div mat-dialog-actions class="form-container__actions" align="end">
       <button
         mat-raised-button
         type="submit"
@@ -54,7 +54,3 @@
     </div>
   </form>
 </div>
-
-<mat-card-footer>
-  <mat-error *ngIf="errorMessage">{{ errorMessage }}</mat-error>
-</mat-card-footer>
