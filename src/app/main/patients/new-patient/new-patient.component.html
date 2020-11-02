@@ -1,1 +1,73 @@
-<p>new-patient works!</p>
+<div class="card-container">
+  <mat-card>
+    <mat-card-header align="center">
+      <mat-card-title>Cadastro de paciente</mat-card-title>
+      <mat-card-subtitle
+      >Cadastro de paciente</mat-card-subtitle
+      >
+    </mat-card-header>
+    <mat-card-content>
+      <form
+        class="form-container"
+        [formGroup]="signUpForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <mat-form-field appearance="outline">
+          <mat-label>Nome</mat-label>
+          <input
+            autocomplete="off"
+            formControlName="name"
+            matInput
+            type="text"
+            maxlength="20"
+            placeholder="Nome"
+            required
+          />
+          <mat-error>Forneça um nome válido</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Data de nascimento</mat-label>
+          <input
+            autocomplete="off"
+            formControlName="birthDate"
+            matInput
+            type="date"
+            minlength="10"
+            maxlength="10"
+            placeholder="dd/MM/yyyy"
+            required
+          />
+          <mat-error>Forneça uma data válida</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Convenio</mat-label>
+          <input
+            autocomplete="off"
+            formControlName="convenio"
+            matInput
+            type="text"
+            placeholder="Convenio"
+            maxlength="20"
+            required
+          />
+        </mat-form-field>
+        <div class="form-container__actions">
+          <button
+            mat-raised-button
+            type="submit"
+            color="primary"
+            [disabled]="!isFormValid()"
+          >
+            Cadastrar
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+
+    <mat-card-footer>
+      <mat-error *ngIf="errorMessage">{{ errorMessage }}</mat-error>
+    </mat-card-footer>
+  </mat-card>
+</div>
