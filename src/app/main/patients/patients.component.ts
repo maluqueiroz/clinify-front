@@ -5,6 +5,8 @@ import { Observable, Subject } from 'rxjs';
 import { Patient } from './shared/model/patient.model';
 import { take } from 'rxjs/operators';
 import { MessageLevel } from 'src/app/shared/services/snackbar/message-level.enum';
+import { MatDialog } from '@angular/material/dialog';
+import { NewPatientComponent } from './new-patient/new-patient.component';
 
 @Component({
   selector: 'app-patients',
@@ -20,7 +22,8 @@ export class PatientsComponent implements OnInit {
 
   constructor(
     private patientService: PatientService,
-    private snackbar: SnackbarService
+    private snackbar: SnackbarService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -29,9 +32,20 @@ export class PatientsComponent implements OnInit {
     this.loadPatients();
   }
 
+  openNewPatientDialog(): void {
+    const dialogRef = this.dialog.open(NewPatientComponent, {
+      height: '400px',
+      width: '600px',
+    });
+
+    dialogRef.afterClosed().pipe(take(1)).subscribe(() => {
+      this.loadPatients();
+    });
+  }
+
   deletePatient(patient: Patient): void {
     this.patientService.removeById(patient.id).pipe(take(1)).subscribe(() => {
-        this.snackbar.open('Consulta Deletada!', MessageLevel.INFO);
+        this.snackbar.open('Paciente Deletado!', MessageLevel.INFO);
         this.loadPatients();
       }
     );

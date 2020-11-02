@@ -1,9 +1,17 @@
 <mat-card>
-  <mat-card-header>
+  <mat-card-header class="patients-header">
     <mat-card-title>Pacientes</mat-card-title>
     <mat-card-subtitle
-      >Aqui estão listados os pacientes cadastrados em nossa base</mat-card-subtitle
+      >Aqui estão listados os pacientes cadastrados em nossa
+      base</mat-card-subtitle
     >
+    <div class="patients-header__actions">
+      <button mat-raised-button color="accent"
+      aria-label="Novo paciente"
+      (click)="openNewPatientDialog()">
+        Novo Paciente
+      </button>
+    </div>
   </mat-card-header>
   <mat-card-content>
     <ng-container *ngIf="patients$ | async as patients; else loading">
@@ -41,10 +49,7 @@
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-        <tr
-          mat-row
-          *matRowDef="let exam; columns: columnsToDisplay"
-        ></tr>
+        <tr mat-row *matRowDef="let exam; columns: columnsToDisplay"></tr>
       </table>
     </ng-container>
     <ng-template #loading>
