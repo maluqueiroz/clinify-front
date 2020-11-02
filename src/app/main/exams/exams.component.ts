@@ -36,7 +36,7 @@ export class ExamsComponent implements OnInit {
 
   deleteExam(exam: Exam): void {
     this.examService.removeById(exam.id).pipe(take(1)).subscribe(() => {
-        this.snackbar.open('Paciente Deletada!', MessageLevel.INFO);
+        this.snackbar.open('Consulta Deletada!', MessageLevel.INFO);
         this.loadExams();
       }
     );

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, HostBinding, HostListener, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { authActions } from 'src/app/core/auth/actions';
@@ -13,6 +13,8 @@ import { SnackbarService } from 'src/app/shared/services/snackbar/snackbar.servi
 })
 export class SideNavItemsComponent implements OnInit {
 
+  @Output() optionClicked = new EventEmitter<void>();
+
   constructor(
     private store: Store<AppState>,
     private router: Router,
@@ -20,6 +22,11 @@ export class SideNavItemsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+  }
+
+  @HostListener('click')
+  onComponentClicked(): void {
+    this.optionClicked.emit();
   }
 
   onLogout(): void {

@@ -1,3 +1,4 @@
+
 mat-card {
   table {
     width: 100%;
@@ -51,4 +52,9 @@ mat-card {
       pointer-events: none;
     }
   }
+}
+
+.no-exam {
+  text-align: center;
+  color: #ccc;
 }
