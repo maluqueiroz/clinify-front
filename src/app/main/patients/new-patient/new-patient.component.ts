@@ -59,7 +59,7 @@ export class NewPatientComponent implements OnInit, OnDestroy {
     )
       .subscribe((data) => {
           this.snackbar.open('Paciente cadastrado com Sucesso!', MessageLevel.SUCCESS);
-          this.router.navigate(['/login']);
+          this.router.navigate(['/patients']);
         },
         (error) => {
           this.errorMessage = error.message;

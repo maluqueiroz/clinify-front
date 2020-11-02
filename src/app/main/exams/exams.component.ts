@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { ExamService } from './service/exam.service';
 import { Component, OnInit } from '@angular/core';
 import { Exam } from './models/exam.model';
-import { Patient } from '../users/model/patient.model';
+import { Patient } from '../patients/model/patient.model';
 
 @Component({
   selector: 'app-exams',

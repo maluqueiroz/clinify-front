@@ -8,6 +8,7 @@ import { MainComponent } from 'src/app/main/main.component';
 import { NotFoundComponent } from 'src/app/not-found/not-found.component';
 import { PatientsComponent } from './main/patients/patients.component';
 import { ExamsComponent } from './main/exams/exams.component';
+import {NewPatientComponent} from './main/patients/new-patient/new-patient.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -19,7 +20,10 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: 'users', component: UsersComponent },
-      { path: 'patients', component: PatientsComponent },
+      { path: 'patients', component: PatientsComponent,
+        children: [
+          {path: 'new-patient', component: NewPatientComponent}
+        ]},
       { path: 'exams', component: ExamsComponent }
     ]
    },
