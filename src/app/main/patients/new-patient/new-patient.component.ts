@@ -5,9 +5,9 @@ import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/form
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { PatientService } from 'src/app/shared/services/patient/patient.service';
 import { MessageLevel } from 'src/app/shared/services/snackbar/message-level.enum';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { PatientService } from '../shared/service/patient.service';
 
 interface SignUpControls {
   name: AbstractControl;

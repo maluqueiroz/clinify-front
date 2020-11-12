@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import {Patient, PatientDTO} from '../../../main/patients/model/patient.model';
+import { Patient } from '../model/patient.model';
 
 @Injectable({
   providedIn: 'root'
@@ -30,12 +30,12 @@ export class PatientService {
     );
   }
 
-  getAllPatients(): Observable<Patient[]> {
-    return this.http.get<PatientDTO[]>(
+  getAll(): Observable<Patient[]> {
+    return this.http.get<Patient[]>(
       PatientService.RESOURCE_URL
     ).pipe(
-      map((patientsDTO: PatientDTO[]): Patient[] => {
-        return patientsDTO.map((patientDTO: PatientDTO): Patient => {
+      map((patientsDTO: Patient[]): Patient[] => {
+        return patientsDTO.map((patientDTO: Patient): Patient => {
           return {
             ...patientDTO,
           };
@@ -46,16 +46,22 @@ export class PatientService {
 
   registerPatient(userRegistrationData: Partial<Patient>): any {
     const { name, birthDate, healthPlan } = userRegistrationData;
-    const patientDTO: PatientDTO = {
+    const patientDTO = {
       name,
       birthDate,
       healthPlan
     };
 
-    return this.http.post<PatientDTO>(
+    return this.http.post<Patient>(
       PatientService.RESOURCE_URL,
       patientDTO,
       { headers: {'Content-Type': 'application/json; charset=utf-8'} }
     );
+  }
+
+  removeById(examId: number): Observable<Patient> {
+    const id = examId.toString();
+
+    return this.http.delete<Patient>(PatientService.RESOURCE_URL + `/${id}`);
   }
 }

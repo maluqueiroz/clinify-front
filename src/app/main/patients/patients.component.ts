@@ -1,13 +1,13 @@
 import { Patient } from 'src/app/main/patients/shared/model/patient.model';
 import { NewExamComponent } from './new-exam/new-exam.component';
 import { SnackbarService } from './../../shared/services/snackbar/snackbar.service';
-import { PatientService } from './../../shared/services/patient/patient.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { MessageLevel } from 'src/app/shared/services/snackbar/message-level.enum';
 import { MatDialog } from '@angular/material/dialog';
 import { NewPatientComponent } from './new-patient/new-patient.component';
+import { PatientService } from './shared/service/patient.service';
 
 @Component({
   selector: 'app-patients',
