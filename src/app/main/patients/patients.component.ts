@@ -34,10 +34,7 @@ export class PatientsComponent implements OnInit {
   }
 
   openNewPatientDialog(): void {
-    const dialogRef = this.dialog.open(NewPatientComponent, {
-      height: '400px',
-      width: '600px',
-    });
+    const dialogRef = this.dialog.open(NewPatientComponent);
 
     dialogRef.afterClosed().pipe(take(1)).subscribe(() => {
       this.loadPatients();
