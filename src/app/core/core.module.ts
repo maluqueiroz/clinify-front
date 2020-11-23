@@ -1,4 +1,4 @@
-import { HttpErrorInterceptor } from './interceptors/http-error-response.interceptor';
+import { FirestoreModule } from './firestore/firestore.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -9,11 +9,13 @@ import { AuthModule } from './auth/auth.module';
   imports: [
     CommonModule,
     HttpClientModule,
-    AuthModule
+    AuthModule,
+    FirestoreModule
   ],
   exports: [
     HttpClientModule,
-    AuthModule
+    AuthModule,
+    FirestoreModule
   ]
 })
 export class CoreModule { }

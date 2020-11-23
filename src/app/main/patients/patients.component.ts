@@ -3,11 +3,11 @@ import { NewExamComponent } from './new-exam/new-exam.component';
 import { SnackbarService } from './../../shared/services/snackbar/snackbar.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { take, tap } from 'rxjs/operators';
 import { MessageLevel } from 'src/app/shared/services/snackbar/message-level.enum';
 import { MatDialog } from '@angular/material/dialog';
 import { NewPatientComponent } from './new-patient/new-patient.component';
-import { PatientService } from './shared/service/patient.service';
+import { PatientFirestoreService } from './shared/service/patient.firestore.service';
 
 @Component({
   selector: 'app-patients',
@@ -20,9 +20,8 @@ export class PatientsComponent implements OnInit {
 
   columnsToDisplay = ['patient', 'healthPlan', 'birthDate', 'actionsRow'];
 
-
   constructor(
-    private patientService: PatientService,
+    private patientFirestoreService: PatientFirestoreService,
     private snackbar: SnackbarService,
     public dialog: MatDialog
   ) { }
@@ -43,13 +42,12 @@ export class PatientsComponent implements OnInit {
 
   openNewExamDialog(patient: Patient): void {
     const dialogRef = this.dialog.open(NewExamComponent, {
-      width: '600px',
       data: patient
     });
   }
 
   deletePatient(patient: Patient): void {
-    this.patientService.removeById(patient.id).pipe(take(1)).subscribe(() => {
+    this.patientFirestoreService.removeById(patient.id).pipe(take(1)).subscribe(() => {
         this.snackbar.open('Paciente Deletado!', MessageLevel.INFO);
         this.loadPatients();
       }
@@ -57,7 +55,7 @@ export class PatientsComponent implements OnInit {
   }
 
   private loadPatients(): void {
-    this.patientService.getAll().pipe(take(1))
+    this.patientFirestoreService.getAll().pipe(take(1))
     .subscribe((patients: Patient[]): void => {
       this.patientsSubject.next(patients);
     });

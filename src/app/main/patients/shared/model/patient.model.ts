@@ -1,5 +1,12 @@
 export interface Patient {
-  id: number;
+  id: string | number;
+  name: string;
+  birthDate: Date;
+  healthPlan: string;
+  code?: string;
+}
+
+export interface PatientRequest {
   name: string;
   birthDate: Date;
   healthPlan: string;
