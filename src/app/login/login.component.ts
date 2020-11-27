@@ -4,10 +4,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from '../reducers';
-import { SnackbarService } from '../core/services/snackbar.service';
 import { AuthService } from '../core/auth/services/auth.service';
-import { MessageLevel } from '../core/services/message-level.enum';
-import { User } from '../main/users/model/user.model';
+import { User } from '../main/users/shared/model/user.model';
+import { MessageLevel } from '../shared/services/snackbar/message-level.enum';
+import { SnackbarService } from '../shared/services/snackbar/snackbar.service';
+
 
 export interface UserLogin {
   username: string;

@@ -1,6 +1,6 @@
 <mat-sidenav-container>
     <mat-sidenav mode="over" align="start" role="navigation" #sidenav>
-        <app-side-nav-items></app-side-nav-items>
+        <app-side-nav-items (optionClicked)="sidenav.toggle()"></app-side-nav-items>
     </mat-sidenav>
     <mat-sidenav-content>
       <mat-toolbar color="primary">

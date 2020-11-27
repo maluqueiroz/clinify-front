@@ -8,6 +8,7 @@ import { SideNavItemsComponent } from '../layout/side-nav-items/side-nav-items.c
 import { PatientsComponent } from './patients/patients.component';
 import { NewPatientComponent } from './patients/new-patient/new-patient.component';
 import { ExamsComponent } from './exams/exams.component';
+import { NewExamComponent } from './patients/new-exam/new-exam.component';
 
 @NgModule({
   declarations: [
@@ -16,12 +17,16 @@ import { ExamsComponent } from './exams/exams.component';
     SideNavItemsComponent,
     PatientsComponent,
     NewPatientComponent,
-    ExamsComponent
+    ExamsComponent,
+    NewExamComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
     AppRoutingModule
+  ],
+  entryComponents: [
+    NewPatientComponent
   ]
 })
 export class MainModule { }

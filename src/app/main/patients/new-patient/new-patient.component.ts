@@ -1,17 +1,18 @@
-import { MessageLevel } from './../../../core/services/message-level.enum';
-import { SnackbarService } from './../../../core/services/snackbar.service';
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Patient } from 'src/app/main/patients/shared/model/patient.model';
+import { SnackbarService } from './../../../shared/services/snackbar/snackbar.service';
+import { Component, Inject, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { PatientService } from 'src/app/shared/services/patient/patient.service';
+import { MessageLevel } from 'src/app/shared/services/snackbar/message-level.enum';
+import { MatDialogRef } from '@angular/material/dialog';
+import { PatientFirestoreService } from '../shared/service/patient.firestore.service';
 
 interface SignUpControls {
   name: AbstractControl;
   birthDate: AbstractControl;
-  convenio: AbstractControl;
+  healthPlan: AbstractControl;
 }
 
 @Component({
@@ -29,9 +30,9 @@ export class NewPatientComponent implements OnInit, OnDestroy {
 
   constructor(
     private fb: FormBuilder,
-    private patientService: PatientService,
+    private patientFirestoreService: PatientFirestoreService,
     private snackbar: SnackbarService,
-    private router: Router
+    public dialogRef: MatDialogRef<NewPatientComponent>
   ) {
   }
 
@@ -39,13 +40,13 @@ export class NewPatientComponent implements OnInit, OnDestroy {
     this.signUpForm = this.fb.group({
       name: [''],
       birthDate: [''],
-      convenio: ['']
+      healthPlan: ['']
     });
 
     this.controls = {
       name: this.signUpForm.get('name'),
       birthDate: this.signUpForm.get('birthDate'),
-      convenio: this.signUpForm.get('convenio')
+      healthPlan: this.signUpForm.get('healthPlan')
     };
   }
 
@@ -54,12 +55,12 @@ export class NewPatientComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    this.patientService.registerPatient(this.signUpForm.value).pipe(
+    this.patientFirestoreService.registerPatient(this.signUpForm.value).pipe(
       takeUntil(this.componentDestroyedSubject)
     )
-      .subscribe((data) => {
-          this.snackbar.open('Paciente cadastrado com Sucesso!', MessageLevel.SUCCESS);
-          this.router.navigate(['/patients']);
+      .subscribe(() => {
+          this.snackbar.open(`Paciente cadastrado com Sucesso!`, MessageLevel.SUCCESS);
+          this.dialogRef.close();
         },
         (error) => {
           this.errorMessage = error.message;
@@ -70,6 +71,6 @@ export class NewPatientComponent implements OnInit, OnDestroy {
   isFormValid(): boolean {
     return this.controls.name.valid
       && this.controls.birthDate.valid
-      && this.controls.convenio.valid;
+      && this.controls.healthPlan.valid;
   }
 }

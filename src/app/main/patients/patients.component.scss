@@ -1,0 +1,33 @@
+.patients-header {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+table {
+  width: 100%;
+
+  .mat-column-patient {
+    width: 40%;
+  }
+
+  .mat-column-healthPlan {
+    width: 25%;
+  }
+
+  .mat-column-birthDate {
+    width: 15%;
+  }
+
+  .mat-column-actionsRow {
+    width: 10%;
+
+    .actions-row {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: flex-end;
+    }
+  }
+}

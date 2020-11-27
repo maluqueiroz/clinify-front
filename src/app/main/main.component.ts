@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-main',
@@ -9,10 +10,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-
   constructor() { }
 
   ngOnInit(): void {
   }
-
 }

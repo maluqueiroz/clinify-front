@@ -1,5 +1,5 @@
-mat-card {
 
+mat-card {
   table {
     width: 100%;
 
@@ -30,22 +30,31 @@ mat-card {
           }
         }
       }
-
     }
 
-    .mat-column-startExamBtn {
+    .mat-column-actionsRow {
       width: 10%;
+
+      .actions-row {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-end;
+      }
     }
-
-
   }
 
   .muted-row {
     background-color: #eee;
 
-    & > *, .mat-icon {
+    & > *,
+    .mat-icon {
       color: darken(#eee, 15%) !important;
       pointer-events: none;
     }
   }
+}
+
+.no-exam {
+  text-align: center;
+  color: #ccc;
 }
