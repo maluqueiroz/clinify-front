@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Injectable({
   providedIn: 'root'
 })
-export class SnackbarService {
+export class MessageService {
   readonly SNACKBAR_DURATION_MS = 2000;
 
   constructor(

@@ -1,5 +1,5 @@
 import { Patient } from 'src/app/main/patients/shared/model/patient.model';
-import { SnackbarService } from './../../../shared/services/snackbar/snackbar.service';
+import { MessageService } from '../../../shared/services/snackbar/message.service';
 import { Component, Inject, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
@@ -31,7 +31,7 @@ export class NewPatientComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private patientFirestoreService: PatientFirestoreService,
-    private snackbar: SnackbarService,
+    private snackbar: MessageService,
     public dialogRef: MatDialogRef<NewPatientComponent>
   ) {
   }

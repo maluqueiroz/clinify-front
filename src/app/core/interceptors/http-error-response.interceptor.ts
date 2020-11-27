@@ -1,4 +1,4 @@
-import { SnackbarService } from 'src/app/shared/services/snackbar/snackbar.service';
+import { MessageService } from 'src/app/shared/services/snackbar/message.service';
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { MessageLevel } from 'src/app/shared/services/snackbar/message-level.enum';
@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 export class HttpErrorInterceptor implements HttpInterceptor {
 
   constructor(
-    private snackBar: SnackbarService
+    private snackBar: MessageService
   ) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

@@ -5,7 +5,7 @@ import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 import {UserService} from 'src/app/main/users/shared/service/user.service';
 import {MessageLevel} from 'src/app/shared/services/snackbar/message-level.enum';
-import {SnackbarService} from 'src/app/shared/services/snackbar/snackbar.service';
+import {MessageService} from 'src/app/shared/services/snackbar/message.service';
 import {UserFirestoreService} from '../../main/users/shared/service/user.firestore.service';
 import {UserRequest} from '../../main/users/shared/model/user.model';
 
@@ -33,7 +33,7 @@ export class NewUserComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private depUserService: UserService,
     private userService: UserFirestoreService,
-    private snackbar: SnackbarService,
+    private snackbar: MessageService,
     private router: Router
   ) {
   }

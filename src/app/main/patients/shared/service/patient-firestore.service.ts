@@ -12,14 +12,15 @@ import {map, take, tap} from 'rxjs/operators';
   providedIn: 'root',
 })
 export class PatientFirestoreService implements IPatientService {
+  private readonly patients$: Observable<Patient[]>;
+
   private readonly COLLECTION_NAME = 'patients';
 
   private collection: AngularFirestoreCollection<Patient | PatientRequest>;
 
   constructor(private afs: AngularFirestore) {
-    this.collection = afs.collection(
-      this.COLLECTION_NAME
-    );
+    this.collection = afs.collection(this.COLLECTION_NAME);
+    this.patients$ = this.collection.valueChanges({ idField: 'id' });
   }
 
   getPatientById(id: string | number): Observable<Patient> {
@@ -40,7 +41,7 @@ export class PatientFirestoreService implements IPatientService {
   }
 
   getAll(): Observable<Patient[]> {
-    return this.collection.valueChanges({ idField: 'id' }).pipe(take(1));
+    return this.patients$;
   }
 
   registerPatient(

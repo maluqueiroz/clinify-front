@@ -1,11 +1,13 @@
 import { ExamService } from './../../exams/shared/service/exam.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Patient } from 'src/app/main/patients/shared/model/patient.model';
-import { SnackbarService } from './../../../shared/services/snackbar/snackbar.service';
+import { MessageService } from '../../../shared/services/snackbar/message.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Component, Inject, OnInit } from '@angular/core';
 import { take } from 'rxjs/operators';
 import { MessageLevel } from 'src/app/shared/services/snackbar/message-level.enum';
+import {ExamRequest} from '../../exams/shared/model/exam.model';
+import {ExamFirestoreService} from '../../exams/shared/service/exam-firestore.service';
 
 @Component({
   selector: 'app-new-exam',
@@ -33,9 +35,10 @@ export class NewExamComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA)
     public patient: Patient,
     public dialogRef: MatDialogRef<NewExamComponent>,
-    private snackbar: SnackbarService,
+    private message: MessageService,
     private fb: FormBuilder,
-    private examService: ExamService
+    private depExamService: ExamService,
+    private examService: ExamFirestoreService
   ) { }
 
   ngOnInit(): void {
@@ -44,15 +47,19 @@ export class NewExamComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.examService.register(this.newExamForm.value).pipe(
+    const examRequest: ExamRequest = {
+      ...this.newExamForm.value
+    };
+
+    this.examService.registerExam(examRequest).pipe(
       take(1)
     )
       .subscribe(() => {
-          this.snackbar.open(`Consulta cadastrada com Sucesso!`, MessageLevel.SUCCESS);
+          this.message.open(`Consulta cadastrada com Sucesso!`, MessageLevel.SUCCESS);
           this.dialogRef.close();
         },
         (error) => {
-          this.snackbar.open(error, MessageLevel.DANGER);
+          this.message.open(error, MessageLevel.DANGER);
         });
   }
 

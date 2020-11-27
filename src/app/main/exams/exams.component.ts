@@ -2,9 +2,10 @@ import { Observable, Subject } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { take } from 'rxjs/operators';
 import { MessageLevel } from 'src/app/shared/services/snackbar/message-level.enum';
-import { SnackbarService } from 'src/app/shared/services/snackbar/snackbar.service';
+import { MessageService } from 'src/app/shared/services/snackbar/message.service';
 import { Exam } from './shared/model/exam.model';
 import { ExamService } from './shared/service/exam.service';
+import {ExamFirestoreService} from './shared/service/exam-firestore.service';
 
 @Component({
   selector: 'app-exams',
@@ -18,8 +19,9 @@ export class ExamsComponent implements OnInit {
   columnsToDisplay = ['patient', 'healthPlan', 'date', 'checkIn', 'actionsRow'];
 
   constructor(
-    private examService: ExamService,
-    private snackbar: SnackbarService
+    private depExamService: ExamService,
+    private examService: ExamFirestoreService,
+    private snackbar: MessageService
   ) { }
 
   ngOnInit(): void {

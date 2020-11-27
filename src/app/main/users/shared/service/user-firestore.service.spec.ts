@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MessageService } from './message.service';
+import { UserFirestoreService } from './user.firestore.service';
 
-describe('SystemMessageService', () => {
-  let service: MessageService;
+describe('User.FirestoreService', () => {
+  let service: UserFirestoreService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(MessageService);
+    service = TestBed.inject(UserFirestoreService);
   });
 
   it('should be created', () => {
