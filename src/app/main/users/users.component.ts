@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from './shared/model/user.model';
 import { UserService } from './shared/service/user.service';
+import {UserFirestoreService} from './shared/service/user.firestore.service';
 
 
 @Component({
@@ -15,7 +16,8 @@ export class UsersComponent implements OnInit {
   columnsToDisplay: string[] = ['username', 'email', 'active', 'createdOn'];
 
   constructor(
-    private userService: UserService
+    private depUserService: UserService,
+    private userService: UserFirestoreService
   ) { }
 
   ngOnInit(): void {

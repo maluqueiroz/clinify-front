@@ -6,24 +6,24 @@ import {
   AngularFirestoreCollection
 } from '@angular/fire/firestore';
 import { IPatientService } from '../model/patient-service.model';
-import { map, tap } from 'rxjs/operators';
+import {map, take, tap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PatientFirestoreService implements IPatientService {
-  static readonly COLLECTION_NAME = 'patients';
+  private readonly COLLECTION_NAME = 'patients';
 
-  static collection: AngularFirestoreCollection<Patient | PatientRequest>;
+  private collection: AngularFirestoreCollection<Patient | PatientRequest>;
 
   constructor(private afs: AngularFirestore) {
-    PatientFirestoreService.collection = afs.collection(
-      PatientFirestoreService.COLLECTION_NAME
+    this.collection = afs.collection(
+      this.COLLECTION_NAME
     );
   }
 
   getPatientById(id: string | number): Observable<Patient> {
-    return PatientFirestoreService.collection.doc(id.toString()).get().pipe(map((document): Patient => {
+    return this.collection.doc(id.toString()).get().pipe(map((document): Patient => {
       const { name, birthDate, healthPlan } = document.data();
 
       return {
@@ -36,11 +36,11 @@ export class PatientFirestoreService implements IPatientService {
   }
 
   removeById(id: string | number): Observable<void> {
-    return from(PatientFirestoreService.collection.doc(id.toString()).delete());
+    return from(this.collection.doc(id.toString()).delete());
   }
 
   getAll(): Observable<Patient[]> {
-    return PatientFirestoreService.collection.valueChanges({ idField: 'id' });
+    return this.collection.valueChanges({ idField: 'id' }).pipe(take(1));
   }
 
   registerPatient(
@@ -53,7 +53,7 @@ export class PatientFirestoreService implements IPatientService {
       healthPlan,
     };
 
-    return from(PatientFirestoreService.collection.add(patientDTO)).pipe(
+    return from(this.collection.add(patientDTO)).pipe(
       map(
         (): PatientRequest => {
           return patientDTO;

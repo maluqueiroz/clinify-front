@@ -7,7 +7,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { MessageLevel } from 'src/app/shared/services/snackbar/message-level.enum';
 import { MatDialogRef } from '@angular/material/dialog';
-import { PatientFirestoreService } from '../shared/service/patient.firestore.service';
+import { PatientFirestoreService } from '../shared/service/patient-firestore.service';
 
 interface SignUpControls {
   name: AbstractControl;

@@ -7,7 +7,7 @@ import { take, tap } from 'rxjs/operators';
 import { MessageLevel } from 'src/app/shared/services/snackbar/message-level.enum';
 import { MatDialog } from '@angular/material/dialog';
 import { NewPatientComponent } from './new-patient/new-patient.component';
-import { PatientFirestoreService } from './shared/service/patient.firestore.service';
+import { PatientFirestoreService } from './shared/service/patient-firestore.service';
 
 @Component({
   selector: 'app-patients',
