@@ -16,9 +16,9 @@ import { NewExamComponent } from './patients/new-exam/new-exam.component';
     UsersComponent,
     SideNavItemsComponent,
     PatientsComponent,
+    NewExamComponent,
     NewPatientComponent,
     ExamsComponent,
-    NewExamComponent
   ],
   imports: [
     CommonModule,
@@ -26,6 +26,7 @@ import { NewExamComponent } from './patients/new-exam/new-exam.component';
     AppRoutingModule
   ],
   entryComponents: [
+    NewExamComponent,
     NewPatientComponent
   ]
 })

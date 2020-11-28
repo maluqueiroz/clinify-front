@@ -7,7 +7,7 @@ import { AppState } from '../reducers';
 import { AuthService } from '../core/auth/services/auth.service';
 import { User } from '../main/users/shared/model/user.model';
 import { MessageLevel } from '../shared/services/snackbar/message-level.enum';
-import { SnackbarService } from '../shared/services/snackbar/snackbar.service';
+import { MessageService } from '../shared/services/snackbar/message.service';
 
 
 export interface UserLogin {
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private auth: AuthService,
     private router: Router,
-    private snackbarService: SnackbarService,
+    private snackbarService: MessageService,
     private store: Store<AppState>
   ) {}
 

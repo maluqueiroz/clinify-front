@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { authActions } from 'src/app/core/auth/actions';
 import { AppState } from 'src/app/reducers';
 import { MessageLevel } from 'src/app/shared/services/snackbar/message-level.enum';
-import { SnackbarService } from 'src/app/shared/services/snackbar/snackbar.service';
+import { MessageService } from 'src/app/shared/services/snackbar/message.service';
 
 @Component({
   selector: 'app-side-nav-items',
@@ -18,7 +18,7 @@ export class SideNavItemsComponent implements OnInit {
   constructor(
     private store: Store<AppState>,
     private router: Router,
-    private snackbar: SnackbarService
+    private snackbar: MessageService
   ) { }
 
   ngOnInit(): void {

@@ -1,5 +1,5 @@
 import { Patient } from 'src/app/main/patients/shared/model/patient.model';
-import { SnackbarService } from './../../../shared/services/snackbar/snackbar.service';
+import { MessageService } from '../../../shared/services/snackbar/message.service';
 import { Component, Inject, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
@@ -7,7 +7,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { MessageLevel } from 'src/app/shared/services/snackbar/message-level.enum';
 import { MatDialogRef } from '@angular/material/dialog';
-import { PatientFirestoreService } from '../shared/service/patient.firestore.service';
+import { PatientFirestoreService } from '../shared/service/patient-firestore.service';
 
 interface SignUpControls {
   name: AbstractControl;
@@ -31,7 +31,7 @@ export class NewPatientComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private patientFirestoreService: PatientFirestoreService,
-    private snackbar: SnackbarService,
+    private snackbar: MessageService,
     public dialogRef: MatDialogRef<NewPatientComponent>
   ) {
   }
